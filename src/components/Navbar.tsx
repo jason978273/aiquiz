@@ -1,11 +1,12 @@
 import { getAuthsession } from '@/lib/nextauth'
 import Link from 'next/link'
 import React from 'react'
+import SignInButton from './SignInButton'
+import UserAccountNav from './UserAccountNav'
 
-type Props = {}
-
-const Navbar = async (props: Props) => {
+const Navbar = async () => {
   const session = await getAuthsession()
+  // console.log(session?.user)
   // if (session?.user) {
   //   return <pre>{JSON.stringify(session.user, null, 2)}</pre>
   // } else {
@@ -18,6 +19,15 @@ const Navbar = async (props: Props) => {
             AIQuiz
           </p>
         </Link>
+        <div className="flex items-center">
+          {/* user profile */}
+          {session?.user ? (
+            <UserAccountNav user = {session.user} />
+          ) : (
+          <SignInButton text = {"Sign In"}/>
+        )
+        }
+        </div>
       </div>
     </div>
   )
