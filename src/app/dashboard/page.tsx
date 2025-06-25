@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import QuizMeCard from '@/components/dashboard/QuizMeCard'
 import HistoryCard from '@/components/dashboard/HistoryCard'
+import HotTopicsCard from './HotTopicsCard'
+import RecentActivities from './RecentActivities'
 
 type Props = {}
 
@@ -26,7 +28,10 @@ const Dashboard = async (props: Props) => {
           <QuizMeCard />
           <HistoryCard />
         </div>
-        <div className='grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-7'></div>
+        <div className='grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-7'>
+          <HotTopicsCard />
+          <RecentActivities />
+        </div>
       </main>
   )
 }
