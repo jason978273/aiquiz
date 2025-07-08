@@ -3,19 +3,19 @@ import { quizCreationSchema } from "@/schemas/quiz"
 import { ZodError } from "zod"
 import { strict_output } from "@/lib/gpt"
 import { getAuthsession } from "@/lib/nextauth"
-import OpenAI, { OpenAIError, APIError } from "openai"
+import OpenAI from "openai"
 
 
 // POST /api/questions
 export const POST = async (req: Request, res: Response) => {
   try {
-    // const session = await getAuthsession()
-    // if (!session?.user) {
-    //   return NextResponse.json(
-    //     { error: "Unauthorized" },
-    //     { status: 401 }
-    //   )
-    // }
+    const session = await getAuthsession()
+    if (!session?.user) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      )
+    }
     const body = await req.json()
     const {amount, topic, type } = quizCreationSchema.parse(body)
     let questions:any
