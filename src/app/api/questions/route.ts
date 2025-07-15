@@ -9,13 +9,13 @@ import OpenAI from "openai"
 // POST /api/questions
 export const POST = async (req: Request, res: Response) => {
   try {
-    const session = await getAuthsession()
-    if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
-    }
+    // const session = await getAuthsession()
+    // if (!session?.user) {
+    //   return NextResponse.json(
+    //     { error: "Unauthorized" },
+    //     { status: 401 }
+    //   )
+    // }
     const body = await req.json()
     const {amount, topic, type } = quizCreationSchema.parse(body)
     let questions:any
